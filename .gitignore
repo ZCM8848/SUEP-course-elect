@@ -1,6 +1,7 @@
 # Private config file
 envconfig.py
 cookies.json
+cookies.txt
 
 # Exported data
 *.xlsx

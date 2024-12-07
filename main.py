@@ -15,7 +15,7 @@ headers = {
     'User-Agent':
     'Mozilla/5.0 (Windows NT 10.0; Win64; x64) '
     'AppleWebKit/537.36 (KHTML, like Gecko) '
-    'Chrome/106.0.0.0 Safari/537.36',
+    'Chrome/131.0.0.0 Safari/537.36',
 }
 
 host = 'https://jw.shiep.edu.cn'
@@ -189,7 +189,11 @@ def thread_elect_courses_exps(exps: list[str], e_id: str):
 if __name__ == '__main__':
     ids = IdsAuth()
 
-    if os.path.exists('cookies.json'):
+    if os.path.exists('cookies.txt'):
+        with open('cookies.txt', 'r') as f:
+            cookies = {i.split('=')[0]: i.split('=')[1] for i in f.read().split(';')}
+        ids = IdsAuth(cookies)
+    elif os.path.exists('cookies.json'):
         with open('cookies.json', 'r') as f:
             cookies = json.load(f)
         ids = IdsAuth(cookies)
@@ -197,8 +201,8 @@ if __name__ == '__main__':
         print('Logging in by username and password...')
         ids.login(username, password, service)
     if ids.ok:
-        with open('cookies.json', 'w') as f:
-            json.dump(ids.cookies, f)
+        with open('cookies.txt', 'w') as f:
+            f.write(';'.join([f'{k}={v}' for k, v in ids.cookies.items()]))
         print('Login success.')
     else:
         print('Login failed.')
