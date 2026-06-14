@@ -13,7 +13,7 @@ class IdsAuth:
         'Chrome/106.0.0.0 Safari/537.36',
     }
     s = requests.Session()
-    rVerify = True  # or 'mitm.pem'
+    rVerify = False  # or 'mitm.pem'
 
     def __init__(self, cookies=None):
         if cookies:
