@@ -1,4 +1,4 @@
-"""Build the GUI app with Nuitka.
+"""Build the GUI app with PyInstaller.
 
 Run:
     D:\\miniconda3\\envs\\SUEP\\python.exe build.py
@@ -8,30 +8,26 @@ import sys
 
 def main():
     sys.argv = [
-        "nuitka",
-        "--standalone",
-        "--include-data-dir=frontend=frontend",
-        "--jobs=4",
-        "--lto=no",
-        "--include-package=backend",
-        "--include-package=ids",
-        "--include-package=_jsonnet",
-        "--include-package=lxml",
-        "--include-package=uvicorn",
-        "--enable-plugin=anti-bloat",
-        "--nofollow-import-to=tkinter",
-        "--nofollow-import-to=PIL",
-        "--nofollow-import-to=matplotlib",
-        "--windows-console-mode=force",
-        "--output-dir=dist",
-        "--windows-product-name=Course Elect Terminal",
-        "--windows-file-version=0.2.0",
-        "--windows-product-version=0.2.0",
+        "pyinstaller",
+        "--name=Course Elect Terminal",
+        "--icon=favicon.ico",
+        "--add-data=frontend;frontend",
+        "--hidden-import=backend",
+        "--hidden-import=ids",
+        "--hidden-import=_jsonnet",
+        "--hidden-import=lxml",
+        "--hidden-import=uvicorn",
+        "--exclude-module=tkinter",
+        "--exclude-module=PIL",
+        "--exclude-module=matplotlib",
+        "--onefile",
+        "--console",
+        "--distpath=dist",
         "app.py",
     ]
-    import nuitka.__main__
+    import PyInstaller.__main__
 
-    nuitka.__main__.main()
+    PyInstaller.__main__.run()
 
 
 if __name__ == "__main__":

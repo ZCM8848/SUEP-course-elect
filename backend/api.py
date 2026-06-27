@@ -83,7 +83,7 @@ async def lifespan(app: FastAPI):
 
 
 if getattr(sys, "frozen", False):
-    FRONTEND_DIR = Path(sys.executable).parent / "frontend"
+    FRONTEND_DIR = Path(sys._MEIPASS) / "frontend"
 else:
     FRONTEND_DIR = Path(__file__).resolve().parent.parent / "frontend"
 
