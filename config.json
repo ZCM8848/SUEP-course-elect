@@ -1,0 +1,10 @@
+{
+  "verify_ssl": false,
+  "election_id": null,
+  "tasks": [],
+  "interval": 0.2,
+  "threads_interval": 0.1,
+  "max_retries": 2,
+  "target_server_time": "2026-06-27T02:14:00.000Z",
+  "username": "20242051"
+}
