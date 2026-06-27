@@ -7,7 +7,6 @@ import sys
 
 
 def main():
-    # Use Nuitka's main entry point programmatically.
     sys.argv = [
         "nuitka",
         "--standalone",
@@ -16,7 +15,14 @@ def main():
         "--lto=no",
         "--include-package=backend",
         "--include-package=ids",
-        "--windows-console-mode=disable",
+        "--include-package=_jsonnet",
+        "--include-package=lxml",
+        "--include-package=uvicorn",
+        "--enable-plugin=anti-bloat",
+        "--nofollow-import-to=tkinter",
+        "--nofollow-import-to=PIL",
+        "--nofollow-import-to=matplotlib",
+        "--windows-console-mode=force",
         "--output-dir=dist",
         "--windows-product-name=Course Elect Terminal",
         "--windows-file-version=0.2.0",

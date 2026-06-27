@@ -82,7 +82,10 @@ async def lifespan(app: FastAPI):
     yield
 
 
-FRONTEND_DIR = Path(__file__).resolve().parent.parent / "frontend"
+if getattr(sys, "frozen", False):
+    FRONTEND_DIR = Path(sys.executable).parent / "frontend"
+else:
+    FRONTEND_DIR = Path(__file__).resolve().parent.parent / "frontend"
 
 app = FastAPI(title="Course Elect API", lifespan=lifespan)
 
